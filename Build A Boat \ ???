@@ -1,8 +1,4 @@
--- AUTHORSHIP AND DISTRIBUTION NOTICE
--- Original Bledi-authored modifications may not be reproduced, redistributed, rebranded, or presented as another party's work without authorization, except as permitted by applicable law or applicable licenses. Violations may result in access revocation and appropriate platform reports. Third-party components remain subject to their respective licenses.
--- Readable source build; no encoded loader.
--- BLEDI BOAT HUB | ASTRA X GUI adapted from the supplied reference.
--- Auto farm starts OFF. F6 stops immediately. Re-executing unloads the previous instance.
+-- deobf by Stereo
 if game.PlaceId ~= 537413528 then warn("Join Build A Boat For Treasure first.");return end
 local env=getgenv()
 if env.BlediBoatHub and env.BlediBoatHub.Unload then env.BlediBoatHub.Unload() end
@@ -17222,17 +17218,17 @@ homeNotice:AddLabel("Original Bledi-authored modifications may not be reproduced
 local adGroup=home:AddLeftGroupbox("Script and website spotlights")
 local adLabel=adGroup:AddLabel("",true)
 local promos={
- {"Bledi Boat Hub","Gold routes and earnings.","Gold Farm"},
- {"Visit rscripts!","https://rscripts.com","https://rscripts.com"},
- {"Bledi Nightfall","Halloween GUI • ask Bledi in telegram.","t.me/stereohi"},
- {"GitHub","Explore open-source projects.","https://github.com"},
- {"Cloudflare","Explore web security tools.","https://www.cloudflare.com"},
- {"Birthday keys","DM staff in telegram with non-sensitive proof.","Get Key"},
+ {"t.me/stereohi","t.me/stereohi","t.me/stereohi"},
+ {"t.me/stereohi","t.me/stereohi","t.me/stereohi"},
+ {"t.me/stereohi","t.me/stereohi","t.me/stereohi"},
+ {"t.me/stereohi","t.me/stereohi","t.me/stereohi"},
+ {"t.me/stereohi","t.me/stereohi","t.me/stereohi"},
+ {"t.me/stereohi","t.me/stereohi","t.me/stereohi"},
 }
 local adIndex=1
 local function renderAd()
  local entry=promos[adIndex];adLabel:SetText(entry[1].."\n"..entry[2])
- Window:SetFooter("Made by Bledi • SPOTLIGHT: "..entry[1].." • Obsidian UI")
+ Window:SetFooter("crack by Stereo • SPOTLIGHT: "..entry[1].." • Obsidian UI")
 end
 adGroup:AddButton({Text="Open spotlight / copy link",Func=function()
  local entry=promos[adIndex]
@@ -17899,5 +17895,4 @@ task.spawn(function()
  task.wait(.5)
  end
 end)
-print("BLEDI_BOAT_READY | Obsidian UI | Music on/off | Bewitching Music Box | Made by Bledi | Auto farm OFF")
-
+print("deobf by Stereo | t.me/stereohi")
