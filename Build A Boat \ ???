@@ -16982,7 +16982,7 @@ return Library
 ]====],"ObsidianLibrary"))()
 -- Preserve the official Obsidian default theme.
 local Window=Obsidian:CreateWindow({
- Title="Build a Boat for Treasure",Footer="Made by Bledi • Obsidian UI",
+ Title="Build a Boat for Treasure",Footer="uhm • Obsidian UI",
  Center=true,AutoShow=true,Resizable=true,Size=UDim2.fromOffset(930,640),
  ShowCustomCursor=false,AlwaysOnTop=false,
  ToggleKeybind=Enum.KeyCode.RightShift,NotifySide="Right",
@@ -17130,30 +17130,30 @@ local REQUIRED_KEY_HASH="ab564d101b036f5fea2b06d921dcef4ae53f8bc6b9c571e0dd4fa46
 local failedKeys,keyCooldownUntil=0,0
 local keyTab=getNativeTab("Get Key")
 local keyGroup=keyTab:AddLeftGroupbox("telegram access")
-keyGroup:AddLabel("Join the community and enter the key from telegram. Key entry stays manual.",true)
+keyGroup:AddLabel("Join the community",true)
 keyGroup:AddButton({Text="Copy telegram invite",Func=function()
  local invite="t.me/stereohi"
  if type(setclipboard)=="function" then setclipboard(invite);notify("telegram invite copied.") else notify(invite,8) end
 end})
-local keyOption=keyGroup:AddInput("BlediAccessKey",{Text="Access key",Default="",Placeholder="Paste key from telegram",Finished=false,ClearTextOnFocus=false})
+local keyOption=keyGroup:AddInput("",{Text="",Default="",Placeholder="",Finished=false,ClearTextOnFocus=false})
 keyOption.Container.Name="AccessKeyInput"
-local keyStatus=keyGroup:AddLabel("LOCKED • Enter your key.",true)
+local keyStatus=keyGroup:AddLabel("",true)
 keyStatus.TextLabel.Name="KeyStatus"
 local function verifyKey()
- if os.clock()<keyCooldownUntil then keyStatus:SetText("Try again in "..math.ceil(keyCooldownUntil-os.clock()).." seconds.");return end
+ if os.clock()<keyCooldownUntil then keyStatus:SetText(""..math.ceil(keyCooldownUntil-os.clock()).."");return end
  local entered=tostring(keyOption.Value or ""):match("^%s*(.-)%s*$")
  if hashKey(entered)~=REQUIRED_KEY_HASH then
  failedKeys+=1;if failedKeys>=5 then failedKeys=0;keyCooldownUntil=os.clock()+30 end
- keyStatus:SetText("Incorrect key. Check telegram and try again.");return
+ keyStatus:SetText("");return
  end
  accessGranted=true;failedKeys=0;keyCooldownUntil=0
- keyOption:SetValue("");keyStatus:SetText("UNLOCKED • Key accepted.")
+ keyOption:SetValue("");keyStatus:SetText("")
  for _,tab in nativeTabs do tab:SetVisible(true) end
  for _,control in lockedControls do control:SetDisabled(false) end
- api:OpenTab("Home");notify("Key accepted. Boat tools unlocked.")
+ api:OpenTab("Home");notify("")
 end
-keyGroup:AddButton({Text="Verify key / unlock hub",Func=verifyKey})
-keyGroup:AddLabel("Birthday? DM telegram staff with non-sensitive proof for a birthday key. Do not send ID documents.",true)
+keyGroup:AddButton({Text="",Func=verifyKey})
+keyGroup:AddLabel("",true)
 
 -- Music is available on the key screen as well as Settings.
 local music={Enabled=true,Volume=.2}
@@ -17203,7 +17203,7 @@ end)
 local home=getNativeTab("Home")
 local welcome=home:AddLeftGroupbox("River control")
 welcome:AddLabel("BUILD A BOAT FOR TREASURE",true)
-welcome:AddLabel("Faster routes, automatic respawn recovery, and live earnings. Made by Bledi.",true)
+welcome:AddLabel("Faster routes, automatic respawn recovery, and live earnings.  uhm",true)
 welcome:AddButton({Text="Open Gold Farm",Func=function() api:OpenTab("Gold Farm") end})
 local homeBalance=welcome:AddLabel("Gold: —",true)
 local homeEarned=welcome:AddLabel("Session earnings: —",true)
@@ -17213,8 +17213,6 @@ function api:UpdateHome(balance,state)
  local b="Session earnings: +"..state.Earned;if homeEarned.Text~=b then homeEarned:SetText(b) end
  local c="Farm: "..state.Status;if homeState.Text~=c then homeState:SetText(c) end
 end
-local homeNotice=home:AddRightGroupbox("Authorship and distribution")
-homeNotice:AddLabel("Original Bledi-authored modifications may not be reproduced, redistributed, rebranded, or misrepresented without authorization, except as permitted by applicable law or licenses. Violations may result in access revocation and platform reports. Obsidian and other third-party components retain their own licenses.",true)
 local adGroup=home:AddLeftGroupbox("Script and website spotlights")
 local adLabel=adGroup:AddLabel("",true)
 local promos={
@@ -17238,7 +17236,7 @@ end})
 function api:NextAd() adIndex=adIndex%#promos+1;renderAd() end
 renderAd()
 task.spawn(function() while Runtime.active do task.wait(2.5);if Runtime.active then api:NextAd() end end end)
-keyTab:Show()
+--keyTab:Show()
 
 local snowLayer=mk("Frame",main,{Name="SnowOverlay",Size=U(1,0,1,0),BT=1,BorderSizePixel=0,ClipsDescendants=true,ZIndex=30,Active=false})
 local rng=Random.new()
@@ -17594,7 +17592,7 @@ local Win=UI:CreateWindow({
  Name="Build a Boat for Treasure",
  Icon="skull",
  LoadingTitle="Build a Boat for Treasure",
- LoadingSubtitle="Made by Bledi • Build A Boat For Treasure",
+ LoadingSubtitle="uhm • Build A Boat For Treasure",
  Theme="Default",
  DisableUIPrompts=true,
  DisableBuildWarnings=true,
@@ -17604,7 +17602,7 @@ local Win=UI:CreateWindow({
 })
 local farm=Win:CreateTab("Autofarm","dollar-sign")
 farm:CreateSection("River gold farm")
-farm:CreateParagraph({Title="Made by Bledi",Content="Follows the ten cave checkpoints, touches the treasure chest, checks your gold balance, then repeats. F6 stops immediately. Interrupted routes, missing rewards, and respawns retry automatically. Stop, F6, unload, and optional goals still stop the farm."})
+farm:CreateParagraph({Title="uhm Bledi",Content="Follows the ten cave checkpoints, touches the treasure chest, checks your gold balance, then repeats. F6 stops immediately. Interrupted routes, missing rewards, and respawns retry automatically. Stop, F6, unload, and optional goals still stop the farm."})
 farmToggle=farm:CreateToggle({Name="Auto Farm Gold",CurrentValue=false,Callback=function(v)
  if v then
  if S.Busy then if not S.Running then task.defer(function() farmToggle:Set(false) end) end;return end
@@ -17711,7 +17709,6 @@ visuals:CreateToggle({Name="River / Treasure Markers",CurrentValue=false,Callbac
 local settings=Win:CreateTab("Settings","settings")
 settings:CreateToggle({Name="Anti-AFK (while authorized)",CurrentValue=true,Callback=function(v) S.AntiAFK=v;S.AntiAFKStatus=v and "Ready" or "Disabled" end})
 local antiAFKStatusLabel=settings:CreateLabel("Anti-AFK: Ready")
-settings:CreateParagraph({Title="Made by Bledi",Content="Obsidian UI Library by deividcomsono, bundled at a pinned revision. Made by Bledi. Home, Gold Farm, Earnings, River Routes, Player, Ocean FX, and Settings. Opaque surfaces with animated pop-ups and local feature spotlights. Farm is off at startup. F6 is your emergency stop key."})
 
 -- Extended tools are real local controls; route and theme presets are labeled as presets.
 local changes=Win:CreateTab("Changelog")
