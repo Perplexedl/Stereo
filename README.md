@@ -1,3 +1,3 @@
-**Hello <3**
+**Hello <3
 
-open source for you :D
+crack \ z | For you**
